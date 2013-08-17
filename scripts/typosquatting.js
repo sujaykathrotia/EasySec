@@ -23,6 +23,13 @@ $(function(){
 	console.log(url);
 //var t=levenshteinDistance('frankenstein', 'frankestein');
 console.log(checkDistance(url));
+
+if(checkDistance(url) === true) {
+	var style = 'position: fixed; width: 100%; background-color:red; color: #fafafa;font-size: 18px; padding: 5px 10px;z-index:99999';
+	var a = $("<div style='" + style + "'>Are you sure you want to browse " + url + " ?</div>");
+	$("body").prepend(a);
+}
+
 function checkDistance(url){
 	for (var i = 0; i <json.length;i++) {
 		t=getEditDistance(url,json[i]);
