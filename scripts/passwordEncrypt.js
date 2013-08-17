@@ -1,12 +1,8 @@
 //get all password fields
-
-var passwordFields = [];
-
 $(function(){
     /* Hide form input values on focus*/ 
     $('input:password').each(function(){
         $(this).attr("easysec-enc", "decrypted");
-        passwordFields.push($(this));
         var txtval = $(this).val();
         $(this).focus(function(){
             if($(this).val().length > 0 && $(this).attr("easysec-enc") == "encrypted"){
@@ -24,13 +20,14 @@ $(function(){
     
     $('form').each(function(){
         $(this).submit(function(){
-            for(var i=0;i<passwordFields.length;i++){
-                 if($(passwordFields[i]).attr("easysec-enc") == "decrypted"){
+            $('input:password').each(function(){
+                 if($(this).attr("easysec-enc") == "decrypted"){
                      
                  }else{
-                passwordFields[i].value = doDecryption(passwordFields[i].value);
+					console.log(doDecryption($(this).val()));
+					$(this).val(doDecryption($(this).val()));
                  }
-            }
+            });
             
             $(this).submit();
             
