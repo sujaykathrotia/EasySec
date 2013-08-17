@@ -66,6 +66,9 @@ $(function(){
 		if(href.indexOf(known_services[j])!=-1){
 			return true;
 		}
+		else{
+			console.log(href);
+		}
 	}
 	return false;
 }

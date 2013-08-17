@@ -11,7 +11,7 @@
    },
    "content_scripts": [ {
       "all_frames": true,
-      "js": [ "scripts/jquery-1.10.2.min.js", "scripts/aes-enc.js", "scripts/aes-dec.js", "scripts/aes-test.js" , "scripts/LinkExpansion.js", "scripts/passwordEncrypt.js" ],
+      "js": [ "scripts/jquery-1.10.2.min.js", "scripts/aes-enc.js", "scripts/aes-dec.js", "scripts/aes-test.js" ,"scripts/levenshtein.js","scripts/typosquatting.js", "scripts/LinkExpansion.js", "scripts/passwordEncrypt.js" ],
       "matches": [ "http://*/*", "https://*/*" ],
       "run_at": "document_start"
    } ],
