@@ -9,12 +9,12 @@ $(function(){
         var txtval = $(this).val();
         $(this).focus(function(){
             if($(this).val().length > 0){
-                $(this).val() = doDecryption($(this).val());
+                $(this).val(doDecryption($(this).val()));
             }
         });
         $(this).blur(function(){
             if($(this).val().length > 0){
-                $(this).val() = doEncryption($(this).val());
+                $(this).val(doEncryption($(this).val()));
             }
         });
     });
