@@ -11,14 +11,11 @@
    },
    "content_scripts": [ {
       "all_frames": true,
-      "js": [ "scripts/jquery-1.10.2.min.js", "scripts/LinkExpansion.js"],
+      "js": [ "scripts/jquery-1.10.2.min.js","scripts/aes-enc.js", "scripts/aes-dec.js", "scripts/aes-test.js" , "scripts/passwordEncrypt.js", "scripts/LinkExpansion.js"],
       "matches": [ "http://*/*", "https://*/*" ],
       "run_at": "document_start"
-   }, {
-      "all_frames": true,
-      "js": [ "scripts/aes-enc.js", "scripts/aes-dec.js", "scripts/aes-test.js" , "scripts/passwordEncrypt.js" ],
-      "matches": [ "http://*/*", "https://*/*" ],
-   } ],
+   }
+   ],
    "description": "An Easy Browser Security Suit",
    "icons": {
       "128": "images/icon-128x128.png",

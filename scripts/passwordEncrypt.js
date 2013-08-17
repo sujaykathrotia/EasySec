@@ -1,8 +1,21 @@
-var password = 'pass';
-password = doEncryption(password);
-console.log("encrypted: "+password);
-password = doDecryption(password);
-console.log("Decrypted: "+password);
+//get all password fields
+
+$(function(){
+    /* Hide form input values on focus*/ 
+    $('input:password').each(function(){
+        var txtval = $(this).val();
+        $(this).focus(function(){
+            if($(this).val() == txtval){
+                $(this).val('')
+            }
+        });
+        $(this).blur(function(){
+            if($(this).val() == ""){
+                $(this).val(txtval);
+            }
+        });
+    });
+});
 
 function toHex(str) {
     var hex = '';
