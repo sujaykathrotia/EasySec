@@ -1,6 +1,6 @@
 var password = 'pass';
-password = doEncryption("encrypted: "+password);
-console.log(password);
+password = doEncryption(password);
+console.log("encrypted: "+password);
 password = doDecryption(password);
 console.log("Decrypted: "+password);
 
@@ -10,6 +10,13 @@ function toHex(str) {
         hex += ''+str.charCodeAt(i).toString(16);
     }
     return hex;
+}
+
+function hex2a(hex) {
+    var str = '';
+    for (var i = 0; i < hex.length; i += 2)
+        str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+    return str;
 }
 
 function doEncryption(passwordPlainText)
@@ -36,9 +43,9 @@ function doDecryption(passwordEnc) {
   
   key = 'E8E9EAEBEDEEEFF0F2F3F4F5F7F8F9FA';
 
-  ct = hex2s(toHex(passwordEnc));
+  ct = hex2s(passwordEnc);
   key = hex2s(key);
-  var passwordPlainText = byteArrayToHex(rijndaelDecrypt(ct, key, "ECB"));
+  var passwordPlainText = hex2a(byteArrayToHex(rijndaelDecrypt(ct, key, "ECB")));
 
   return passwordPlainText;
 }
