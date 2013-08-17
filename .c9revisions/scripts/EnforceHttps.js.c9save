@@ -1,2 +1,3 @@
 {"ts":1376769505634,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
 {"contributors":[],"silentsave":false,"ts":1376773545888,"patch":[[{"diffs":[[1,"var httpreg = /http:\\/\\//;\n\nif(httpreg.test(location.href)){\n    var newloc = location.hfef;\n    newloc.replace('http://','https://');\n    \n    window.navigate(newloc);\n}"]],"start1":0,"start2":0,"length1":0,"length2":170}]],"length":170,"saved":false}
+{"ts":1376773717236,"patch":[[{"diffs":[[-1,"var httpreg = /http:\\/\\//;\n\nif(httpreg.test(location.href)){\n    var newloc = location.hfef;\n    newloc.replace('http://','https://');\n    \n    window.navigate(newloc);\n}"]],"start1":0,"start2":0,"length1":170,"length2":0}]],"length":0,"saved":false}
