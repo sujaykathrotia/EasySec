@@ -23,20 +23,23 @@ $(function(){
 	console.log(url);
 //var t=levenshteinDistance('frankenstein', 'frankestein');
 console.log(checkDistance(url));
-
-if(checkDistance(url) === true) {
-	var style = 'position: fixed; width: 100%; background-color:red; color: #fafafa;font-size: 18px; padding: 5px 10px;z-index:99999';
-	var a = $("<div style='" + style + "'>Are you sure you want to browse " + url + " ?</div>");
+var matchBest = checkDistance(url);
+if(matchBest !== "") {
+	var style = 'position: fixed; width: 100%; background-color:#d14836; color: #fafafa;font-size: 24px; padding: 20px;z-index:99999; border-bottom: 5px solid #fff;';
+	var a = $("<div style='" + style + "'>Are you sure you want to browse <b>" + url + " </b> instead of <a target='_blank' style='color: #fafafa;' href='http://" + matchBest + "'><b>" + matchBest + "</b></a> ?</div>");
 	$("body").prepend(a);
+	var span = $("<span style='float: right; font-weight: bold;margin-right: 50px;cursor: pointer;'>ignore<span>");
+	span.on("click", function() { a.hide(); });
+	a.append(span);
 }
 
 function checkDistance(url){
 	for (var i = 0; i <json.length;i++) {
 		t=getEditDistance(url,json[i]);
 		if(t==1 || t==2 ||t==3){
-			return true;
+			return json[i];
 		}	
 	};
-	return false;
+	return "";
 }
 });
