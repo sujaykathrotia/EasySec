@@ -1,8 +1,8 @@
 var password = 'pass';
-password = doEncryption(password);
+password = doEncryption("encrypted: "+password);
 console.log(password);
 password = doDecryption(password);
-console.log(password);
+console.log("Decrypted: "+password);
 
 function toHex(str) {
     var hex = '';
@@ -37,7 +37,7 @@ function doDecryption(passwordEnc) {
   key = 'E8E9EAEBEDEEEFF0F2F3F4F5F7F8F9FA';
 
   ct = hex2s(toHex(passwordEnc));
-  key = hex2s(theForm.key.value);
+  key = hex2s(key);
   var passwordPlainText = byteArrayToHex(rijndaelDecrypt(ct, key, "ECB"));
 
   return passwordPlainText;
