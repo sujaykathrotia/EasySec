@@ -1,14 +1,9 @@
-AES_Init();
+var password = 'pass';
+var key = '';
 
-var block = "hello world";
+password =formatPlaintext(password);
+key = getRandomBytes(12);
 
-var key = new Array(32);
-for(var i = 0; i < 32; i++)
-  key[i] = i;
+var res = rijndaelEncrypt(password,key,"CBC");
 
-AES_ExpandKey(key);
-var mystring = AES_Encrypt(block, key);
-
-console.log(mystring);
-
-AES_Done();
+console.log(res);
