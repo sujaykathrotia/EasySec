@@ -1,6 +1,6 @@
 $(function(){
 	url=window.location.href;
-	json=["facebook.com","google.com","youtube.com","microsoft.com","apple.com","yahoo.com","baidu.com","wikipedia.org","linkedin.com","amazon.com","live.com","twitter.com","blogspot.com","taobao.com","bing.com","yandex.com","ebay.com","tumblr.com","mcgill.ca"];
+	json=["facebook.com","google.com","google.ca","youtube.com","microsoft.com","apple.com","yahoo.com","baidu.com","wikipedia.org","linkedin.com","amazon.com","amazon.ca","live.com","twitter.com","blogspot.com","taobao.com","bing.com","yandex.com","ebay.com","tumblr.com","mcgill.ca"];
 	console.log(url);
 	if(url.indexOf("http:")!=-1){
 
