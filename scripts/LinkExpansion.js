@@ -50,7 +50,16 @@ $(function(){
 		allLinks.each(function(){
 		if($(this).attr('href')){
 			var hrefl=$(this).attr('href');
-			if(checkShorturlDomains(hrefl)){
+			var flag=checkShorturlDomains(hrefl);
+			if(flag!=""){
+				//console.log(flag);
+				//console.log(hrefl.indexOf(flag));
+				hrefl=hrefl.substring(hrefl.indexOf(flag));
+				if(hrefl.indexOf("&")!=-1){
+					hrefl=hrefl.substring(0,hrefl.indexOf("&"));
+				}
+
+				//console.log(hrefl);
 			url =Expandlink(hrefl);
 			
 			$(this).attr('href',url);
@@ -61,16 +70,18 @@ $(function(){
 
 	
 	function checkShorturlDomains(href){
+		//console.log(href);
 		for(var j=0; j<known_services.length; j++){
 		//if link matches with shorturldomain
 		if(href.indexOf(known_services[j])!=-1){
-			return true;
+
+			return known_services[j];
 		}
 		else{
-			console.log(href);
+			//console.log(href);
 		}
 	}
-	return false;
+	return "";
 }
 
 function Expandlink(url){
