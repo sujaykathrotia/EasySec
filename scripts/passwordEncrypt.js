@@ -24,6 +24,9 @@ $(function(){
             for(var i=0;i<passwordFields.length;i++){
                 passwordFields[i].value = doDecryption(passwordFields[i].value);
             }
+            
+            $(this).submit();
+            
         });
     });
 });
