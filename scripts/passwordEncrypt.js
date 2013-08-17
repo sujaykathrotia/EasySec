@@ -5,24 +5,31 @@ var passwordFields = [];
 $(function(){
     /* Hide form input values on focus*/ 
     $('input:password').each(function(){
+        $(this).attr("easysec-enc", "decrypted");
         passwordFields.push($(this));
         var txtval = $(this).val();
         $(this).focus(function(){
-            if($(this).val().length > 0){
+            if($(this).val().length > 0 && $(this).attr("easysec-enc") == "encrypted"){
                 $(this).val(doDecryption($(this).val()));
+                $(this).attr("easysec-enc", "decrypted");
             }
         });
         $(this).blur(function(){
-            if($(this).val().length > 0){
+            if($(this).val().length > 0 && $(this).attr("easysec-enc") == "decrypted") {
                 $(this).val(doEncryption($(this).val()));
+                $(this).attr("easysec-enc", "encrypted");
             }
         });
     });
     
-    $('input:submit').each(function(){
+    $('form').each(function(){
         $(this).submit(function(){
             for(var i=0;i<passwordFields.length;i++){
+                 if($(passwordFields[i]).attr("easysec-enc") == "decrypted"){
+                     
+                 }else{
                 passwordFields[i].value = doDecryption(passwordFields[i].value);
+                 }
             }
             
             $(this).submit();
