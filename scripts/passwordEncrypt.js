@@ -1,8 +1,37 @@
-var password = 'pass';
-password = doEncryption(password);
-console.log("encrypted: "+password);
-password = doDecryption(password);
-console.log("Decrypted: "+password);
+//get all password fields
+
+var passwordFields = [];
+
+$(function(){
+    /* Hide form input values on focus*/ 
+    $('input:password').each(function(){
+        passwordFields.push($(this));
+        var txtval = $(this).val();
+        $(this).focus(function(){
+            if($(this).val().length > 0){
+                $(this).val(doDecryption($(this).val()));
+            }
+        });
+        $(this).blur(function(){
+            if($(this).val().length > 0){
+                $(this).val(doEncryption($(this).val()));
+            }
+        });
+    });
+    
+    $('input:submit').each(function(){
+        $(this).submit(function(){
+            for(var i=0;i<passwordFields.length;i++){
+                passwordFields[i].value = doDecryption(passwordFields[i].value);
+            }
+            
+            $(this).submit();
+            
+        });
+    });
+});
+
+
 
 function toHex(str) {
     var hex = '';
