@@ -1,6 +1,11 @@
+INDEX:
+-  : action todo
+-- : action completed
+
+
 General
 =======
-- enable disable feature from popup page
+- enable/disable features from popup page
 
 
 LinkExpansion
@@ -10,7 +15,9 @@ LinkExpansion
 
 TypoSquatting
 =============
-- Expand dictionary to 500 popular websites from alexa
-- Feature: 'add to dictionary' button
+- store dictionary on background page
+
+-- Expand dictionary to 100 popular websites from alexa
+-- Feature: 'add to dictionary' button
 
 
