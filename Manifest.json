@@ -1,8 +1,12 @@
 {
-   "background": {
-      "persistent": false,
-      "scripts": [ "scripts/bg.js" ]
+   "name": "EasySec",
+   "description": "An Easy Browser Security Suit that adds simple checks to prevent social engineering attacks",
+   "icons": {
+      "128": "images/icon-128x128.png",
+      "48": "images/icon-48x48.png"
    },
+   "version": "1.0",
+   "manifest_version": 2,
    "browser_action": {
       "default_icon": {
          "128": "images/icon-128x128.png",
@@ -19,16 +23,7 @@
       "run_at": "document_start"
    }
    ],
-   "description": "An Easy Browser Security Suit",
-   "icons": {
-      "128": "images/icon-128x128.png",
-      "48": "images/icon-48x48.png"
-   },
-   "manifest_version": 2,
    "minimum_chrome_version": "26.0.0.0",
-   "name": "EasySec",
-   //"options_page": "settingsdialog.html",
-   "version": "0.0.0.1",
-   "permissions": [ "http://*/*", "https://*/*", "background", "cookies", "idle", "notifications", "tabs","storage" ],
+   "permissions": [ "http://*/*", "https://*/*", "cookies", "idle", "notifications", "tabs","storage" ],
    "web_accessible_resources": [ "*" ]
 }
