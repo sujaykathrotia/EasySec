@@ -1,3 +1,8 @@
+General
+=======
+- enable disable feature from popup page
+
+
 LinkExpansion
 =============
 - expand popular short urls only
@@ -6,6 +11,6 @@ LinkExpansion
 TypoSquatting
 =============
 - Expand dictionary to 500 popular websites from alexa
-- Feature to add to dictionary
+- Feature: 'add to dictionary' button
 
 

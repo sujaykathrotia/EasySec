@@ -28,7 +28,7 @@
    "minimum_chrome_version": "26.0.0.0",
    "name": "EasySec",
    //"options_page": "settingsdialog.html",
-   "version": "2013.731.433.1",
-   "permissions": [ "http://*/*", "https://*/*", "background", "cookies", "idle", "notifications", "tabs" ],
+   "version": "0.0.0.1",
+   "permissions": [ "http://*/*", "https://*/*", "background", "cookies", "idle", "notifications", "tabs","storage" ],
    "web_accessible_resources": [ "*" ]
 }
