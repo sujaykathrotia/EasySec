@@ -14,7 +14,7 @@
    "content_scripts": [ {
       "all_frames": true,
 
-      "js": [ "scripts/jquery-1.10.2.min.js", "scripts/PasswordEncrypt/aes-enc.js", "scripts/PasswordEncrypt/aes-dec.js", "scripts/PasswordEncrypt/aes-test.js" ,"scripts/TypoSquatting/levenshtein.js","scripts/TypoSquatting/typosquatting.js", "scripts/LinkExpansion/LinkExpansion.js", "scripts/PasswordEncrypt/passwordEncrypt.js" ],
+      "js": [ "scripts/jquery-1.10.2.min.js", "scripts/TypoSquatting/levenshtein.js","scripts/TypoSquatting/typosquatting.js", "scripts/LinkExpansion/LinkExpansion.js", "scripts/PasswordEncrypt/passwordEncrypt.js" ],
       "matches": [ "http://*/*", "https://*/*" ],
       "run_at": "document_start"
    }
