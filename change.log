@@ -1,0 +1,22 @@
+Change Log
+-----------------------------------------------------------
+
+v2013.731.433.2:
+----------------
+1. Disabled Password Encryption
+2. Disabled Malware Detection
+3. Added new manifest file
+4. Added change.log file
+5. Added Central Control for content-script (begin.js)
+6. Added background script (bg.js)
+7. Improved expand link script (expandlinks.js)
+
+Expand Links Changes:
+-------------
+1. Fatching Supported Sites in Background script (only once on browser startup)
+2. Filtering External URLs
+3. Extract domain from URL
+4. Parsing domain in supported site JSON
+3. Unblocking enqueue links in a custom URL class
+4. Unblocking AJAX request to longurl
+5. Changing URL with long URL and innerText with longurl title

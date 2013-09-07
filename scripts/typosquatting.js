@@ -38,8 +38,8 @@ function checkDistance(url){
 		t=getEditDistance(url,json[i]);
 		if(t==1 || t==2 ||t==3){
 			return json[i];
-		}	
-	};
+		}
+	}
 	return "";
 }
 });
