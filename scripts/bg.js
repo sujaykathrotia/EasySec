@@ -1,10 +1,20 @@
+/* Object for handling background script */
 var _es = {};
+
+/* LongURL Services which will be filled using LongURL API call */
 _es.LongURLservices = null;
 
+/**
+  * Start of background Script
+  * Get options and/or other parameters required on startup of extension
+  */
 _es.start = function() {
 	_es.getLongURLServices(function() {});
 };
 
+/**
+  * Makes AJAX request to LongURL API to get all supported shorl url services
+  */
 _es.getLongURLServices = function(callback) {
 	$.ajax({
 		url: 'http://api.longurl.org/v2/services?format=json',
@@ -12,15 +22,18 @@ _es.getLongURLServices = function(callback) {
 		success: function(data) {
 			_es.LongURLservices = data;
 			console.log(data);
-			callback();
+			callback();	// Calling Callback after receiving services in JSON
 		}
 	});
 };
 
+/**
+  * Makes AJAX request to LongURL API to get all supported shorl url services
+  */
 _es.getLongURL = function(link, callback) {
 	var apiurl = 'http://api.longurl.org/v2/expand?',
 		request = 'url=' + encodeURIComponent(link) +
-			'&title=1' +
+			'&title=1' +		// Also get title to replace link's innerHTML
 			'&format=json';
 
 	$.ajax({
@@ -29,16 +42,17 @@ _es.getLongURL = function(link, callback) {
 		success: function(data) {
 			if(data["type"]!="error") {
 				data.short = link;
-				callback(data);
+				callback(data);		// Calling Callback after getting long url
 			}
 		}
 	});
 };
 
 /**
- * Handle data sent by content scripts
- */
+  * Handle request sent by content scripts
+  */
 chrome.extension.onRequest.addListener(function(request, sender, callback) {
+	// TODO: Replace following if condition by JSON
 	if (request.action == 'getLongURL') {
 		_es.getLongURL(request.link, callback);
 	} else if (request.action == 'getOptionsAndServices') {
@@ -50,6 +64,9 @@ chrome.extension.onRequest.addListener(function(request, sender, callback) {
 	}
 });
 
+/**
+  * returning options and services to content script
+  */
 function returnOptionsAndServices(callback) {
 	var obj = {
 		known_services: _es.LongURLservices
