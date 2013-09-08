@@ -1,5 +1,6 @@
+=============
 Change Log
------------------------------------------------------------
+=============
 
 v2013.731.433.2:
 ----------------
@@ -20,3 +21,30 @@ Expand Links Changes:
 3. Unblocking enqueue links in a custom URL class
 4. Unblocking AJAX request to longurl
 5. Changing URL with long URL and innerText with longurl title
+6. Expand popular short urls only
+
+TypoSquatting Changes:
+----------------------
+1. Expand dictionary to 100 popular websites from alexa
+2. Feature: 'add to dictionary' button
+
+=======
+TODO
+=======
+
+INDEX:
+-  : action todo
+-- : action completed
+
+
+General
+--------
+- enable/disable features from popup page
+
+LinkExpansion
+--------------
+- add icon on web page to optionally expand other short urls
+
+TypoSquatting
+--------------
+- store dictionary on background page
