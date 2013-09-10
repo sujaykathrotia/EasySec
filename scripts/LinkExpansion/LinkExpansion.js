@@ -25,7 +25,6 @@ _LiEx.onLoad = function(data) {
   */
 _LiEx.processDOMLinks = function() {
 	$(document).ready(function($) {
-		console.log(_LiEx);
 		$("a").each(function(index, el) {
 			_LiEx.expandLink(el);
 		});

@@ -8,10 +8,16 @@ var _es = {};
   * then module should do nothing
   */
 _es.begin = function(data) {
-	_LiEx.onLoad(data);
+	for (var i = 0; i < data.modules.length; i++) {
+		if(data.modules[i].enabled === 2)
+			window[data.modules[i].id].onLoad(data);
+	}
 };
+
+var current_domain = location.href.match(/^(?:https?:\/\/)?(?:www\.)?((?:[-\w]+\.)+[a-zA-Z]{2,})(\/.+)?/i)[1];
 
 /* Get Options and other parameters from Background */
 chrome.extension.sendRequest({
-	action: 'getOptionsAndServices'
+	action: 'getOptions',
+	domain: current_domain
 }, _es.begin);
