@@ -14,9 +14,8 @@ _es.modules.push({
 	id: "_TySq"
 });
 
-/* Creating Settings Object */
+/* Creating Domain Settings Object */
 var domains = new Lawnchair({ name:'domains' }, function (store) {});
-var settings = new Lawnchair({ name: 'settings' }, function (store) {});
 
 /* LongURL Services which will be filled using LongURL API call */
 _es.LongURLservices = null;
@@ -88,11 +87,14 @@ chrome.extension.onRequest.addListener(function(request, sender, callback) {
   * returning options and services to content script
   */
 function returnOptionsAndServices(domain, callback) {
-	var obj = {
-		modules: getModules(domain),
-		known_services: _es.LongURLservices
-	};
-	callback(obj);
+	getModules(domain, function (modules) {
+		var obj = {
+			modules: modules,
+			known_services: _es.LongURLservices
+		};
+
+		callback(obj);
+	});
 }
 
 _es.start();
@@ -106,13 +108,12 @@ Array.prototype.clone = function() {
 };
 
 function onVersionChanged() {
-	for(var i=0; i<_es.modules.length; i++) {
-		settings.get(_es.modules[i].id, function(object) {
-			if(typeof object === "undefined") {
-				settings.save({ key: _es.modules[i].id, value: true });
-			}
-		});
-	}
+	$.each(_es.modules, function(index, module) {
+		var object = localStorage[module.id];
+		if(typeof object === "undefined" || object === null) {
+			localStorage[module.id] = true;
+		}
+	});
 }
 
 function getVersion() {
@@ -124,18 +125,14 @@ if (getVersion() != localStorage['version']) {
 	onVersionChanged();
 }
 
-function getModules(domain) {
-	var x = _es.modules.clone(),
-		dS;
-	domains.get(domain, function(ob) {
-		if(typeof ob !== "undefined")
-			dS = ob.value;
-		else
-			dS = {};
-	});
-	for(var i=0; i<x.length; i++) {
-		settings.get(x[i].id, function (object) {
-			if(typeof object !== "undefined") {
+function getModules(domain, callback) {
+	var x = _es.modules.clone();
+	
+	getDomainSetting(domain, function(dS) {
+		for(var i=0; i<x.length; i++) {
+			var module = x[i].id;
+			var object = localStorage[module];
+			if(typeof object !== "undefined" && object !== null) {
 				if(object.value === false) {
 					x[i].enabled = 0;
 				} else {
@@ -147,27 +144,38 @@ function getModules(domain) {
 			} else {
 				x[i].enabled = 2;
 			}
-		});
-	}
-	console.log(x);
-	return x;
+		}
+		callback(x);
+	});
+	
+}
+
+function getDomainSetting(domain, callback) {
+	domains.get(domain, function(ob) {
+		if(typeof ob !== "undefined" && ob !== null)
+			dS = ob.value;
+		else
+			dS = {};
+
+		callback(dS);
+	});
 }
 
 function setSetting(module, option, domain) {
-	if(option == 0) {
+	if(option == "0") {
 		console.log(module + " : " + option + " : " + domain);
-		settings.save({ key: module, value: false });
+		localStorage[module] = false;
 	} else {
-		settings.save({ key: module, value: true });
+		localStorage[module] = true;
 		var value = false;
-		if(option == 1) {
+		if(option == "1") {
 			value = false;
 		} else {
 			value = true;
 		}
 		domains.get(domain, function(object) {
 			var domainObject = {};
-			if(typeof object !== "undefined") {
+			if(typeof object !== "undefined" && object !== null) {
 				domainObject = object.value;
 			}
 			domainObject[module] = value;

@@ -1,6 +1,7 @@
 var current_domain;
 
 function add_Module(options) {
+	console.log(options);
 	var el = '<section>' +
 		'<label>' + options.title + ':</label>' +
 		'<ul id="' + options.id + '" class="toggle">' +
