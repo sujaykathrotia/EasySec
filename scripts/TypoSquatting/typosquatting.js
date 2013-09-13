@@ -5,11 +5,11 @@ _TySq.topDomains = ["facebook.com","google.com","youtube.com","microsoft.com","a
 var current_domain = location.href.match(/^(?:https?:\/\/)?(?:www\.)?((?:[-\w]+\.)+[a-zA-Z]{2,})(\/.+)?/i)[1];
 
 _TySq.onLoad = function(data) {
-	_TySq.getURLandCheck();
+	_TySq.getURLandCheck(data.topDomains);
 };
 
-_TySq.getURLandCheck = function () {
-	var matchBest = _TySq.checkDistance(current_domain, _TySq.topDomains);
+_TySq.getURLandCheck = function (urlsDictionary) {
+	var matchBest = _TySq.checkDistance(current_domain, urlsDictionary);
 	if(matchBest !== "") {
 		var style = 'position: fixed; top: 0px; width: 100%;background: linear-gradient(to bottom, #D14836 0%,#CC0D00 100%);color: #fafafa;font-size: 13px;padding: 6px 15px;z-index: 99999;box-shadow: 0px 0px 15px #333;border-bottom: 2px solid #D60000;';
 		var a = $("<div style='" + style + "'>Are you sure you want to browse <b>" + current_domain + " </b> instead of <a target='_blank' style='color: #fafafa;' href='http://" + matchBest + "'><b>" + matchBest + "</b></a> ?</div>");
@@ -31,8 +31,10 @@ _TySq.getURLandCheck = function () {
 	}
 };
 
+
+var likelyMatch = "";
+var likelyDist = 4;
 _TySq.checkDistance = function (url, urlsDictionary) {
-	var likelyMatch = "";
 	for (var i = 0; i < urlsDictionary.length; i++) {
 		t = getEditDistance(url,urlsDictionary[i]);
 		//if full match then return safe
@@ -40,8 +42,9 @@ _TySq.checkDistance = function (url, urlsDictionary) {
 			return "";
 		}
 		//if typo, save then keep searching through dictionary
-		if(t == 1 || t == 2 || t == 3) {
+		if(t > 0 && t < likelyDist) {
 			likelyMatch = urlsDictionary[i];
+			likelyDist = t;
 		}
 	}
 	return likelyMatch;
