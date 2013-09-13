@@ -133,10 +133,10 @@ function getModules(domain, callback) {
 			var module = x[i].id;
 			var object = localStorage[module];
 			if(typeof object !== "undefined" && object !== null) {
-				if(object.value === false) {
+				if(object == "false") {
 					x[i].enabled = 0;
 				} else {
-					if(dS[x[i].id] === false)
+					if(dS[x[i].id] == false)
 						x[i].enabled = 1;
 					else
 						x[i].enabled = 2;
@@ -145,6 +145,7 @@ function getModules(domain, callback) {
 				x[i].enabled = 2;
 			}
 		}
+		console.log(x);
 		callback(x);
 	});
 	
@@ -162,13 +163,13 @@ function getDomainSetting(domain, callback) {
 }
 
 function setSetting(module, option, domain) {
-	if(option == "0") {
-		console.log(module + " : " + option + " : " + domain);
+	console.log(module + " : " + option + " : " + domain);
+	if(option == 0) {
 		localStorage[module] = false;
 	} else {
 		localStorage[module] = true;
 		var value = false;
-		if(option == "1") {
+		if(option == 1) {
 			value = false;
 		} else {
 			value = true;

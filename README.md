@@ -20,7 +20,7 @@ Features are divided into three categories based on status of the project. We wi
 
 # Contributors
 - Mohit Shah - [mohit.shah41@gmail.com](mailto://mohit.shah41@gmail.com) (McGill University)
-- Shabbir Hussain - [mohd.husn001@gmail.com](mailto://mohit.shah41@gmail.com) (McGill University)
+- Shabbir Hussain - [mohd.husn001@gmail.com](mailto://mohd.husn001@gmail.com) (McGill University)
 - Sujay Kathrotia - [sujaykathrotia@gmail.com](mailto://sujaykathrotia@gmail.com) (McGill University)
 
 # License 
