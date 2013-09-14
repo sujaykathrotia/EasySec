@@ -68,6 +68,26 @@ _es.getLongURL = function(link, callback) {
 };
 
 /**
+  * Make AJAX request to https site to see if status is ok
+  */
+_es.checkHTTPS = function(link, callback) {
+
+	//request headers only
+	$.ajax({
+		type: "HEAD",
+		url: link,
+		success: function(message, text, response) {
+
+			//200 response means we're in business
+			if(response.status=200) {
+				
+				callback();
+			}
+		}
+	});
+}
+
+/**
   * Handle request sent by content scripts
   */
 chrome.extension.onRequest.addListener(function(request, sender, callback) {
@@ -83,6 +103,9 @@ chrome.extension.onRequest.addListener(function(request, sender, callback) {
 	} else if (request.action == 'setOptions') {
 		setSetting(request.module, request.option, request.domain);
 		callback();
+	} else if (request.action == 'checkHTTPS') {
+
+		_es.checkHTTPS(request.link,callback);
 	}
 });
 
