@@ -4,11 +4,11 @@ var _es = {};
 _es.modules = [];
 
 _es.modules.push({
-	title: "Link Expansion",
-	id: "_LiEx"
-}, {
 	title: "Enforce HTTPS",
 	id: "_EnHt"
+}, {
+	title: "Link Expansion",
+	id: "_LiEx"
 }, {
 	title: "Domain Verification",
 	id: "_TySq"
