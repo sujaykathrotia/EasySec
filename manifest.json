@@ -6,10 +6,9 @@
 		"48": "images/icon-48x48.png",
 		"19": "images/icon-19x19.png"
 	},
-	"version": "1.0.0.2",
+	"version": "1.0.0.3",
 	"manifest_version": 2,
 	"background": {
-		//"persistent": false,
 		"scripts": [ "scripts/jquery-1.10.2.min.js", "scripts/lawnchair.js", "scripts/bg.js" ]
 	},
 	"browser_action": {
@@ -28,8 +27,6 @@
 		"run_at": "document_end"
 	}],
 	"minimum_chrome_version": "26.0.0.0",
-	"name": "EasySec",
-	//"options_page": "settingsdialog.html",
 	"permissions": [ "http://*/*", "https://*/*", "background", "cookies", "idle", "notifications", "tabs", "storage" ],
-	"web_accessible_resources": [ "*" ]
+	"web_accessible_resources": [ "*" ] 
 }
