@@ -4,11 +4,11 @@ var _es = {};
 _es.modules = [];
 
 _es.modules.push({
-	title: "Link Expansion",
-	id: "_LiEx"
-}, {
 	title: "Enforce HTTPS",
 	id: "_EnHt"
+}, {
+	title: "Link Expansion",
+	id: "_LiEx"
 }, {
 	title: "Domain Verification",
 	id: "_TySq"
@@ -71,21 +71,31 @@ _es.getLongURL = function(link, callback) {
   * Make AJAX request to https site to see if status is ok
   */
 _es.checkHTTPS = function(link, callback) {
-
 	//request headers only
-	$.ajax({
-		type: "HEAD",
-		url: link,
-		success: function(message, text, response) {
 
-			//200 response means we're in business
-			if(response.status=200) {
-				
-				callback();
-			}
+	var current_domain = link.match(/^(?:https?:\/\/)?(?:www\.)?((?:[-\w]+\.)+[a-zA-Z]{2,})(\/.+)?/i)[1];
+
+	getDomainSetting(current_domain, function(dS) {
+		if (typeof dS === "undefined" || dS === null || typeof dS['https'] === "undefined" || dS['https'] === null) {
+			$.ajax({
+				type: "HEAD",
+				url: link,
+				success: function(message, text, response) {
+					setSetting("https", 2, current_domain);
+					callback();
+				},
+				error: function() {
+					setSetting("https", 1, current_domain);
+				}
+			});
+		} else if(dS['https'] == true) {
+			callback();
+		} else {
+			setSetting("https", 1, current_domain);
+			setSetting("_EnHt", 1, current_domain);
 		}
 	});
-}
+};
 
 /**
   * Handle request sent by content scripts
@@ -104,8 +114,7 @@ chrome.extension.onRequest.addListener(function(request, sender, callback) {
 		setSetting(request.module, request.option, request.domain);
 		callback();
 	} else if (request.action == 'checkHTTPS') {
-
-		_es.checkHTTPS(request.link,callback);
+		_es.checkHTTPS(request.link, callback);
 	}
 });
 
@@ -172,7 +181,6 @@ function getModules(domain, callback) {
 				x[i].enabled = 2;
 			}
 		}
-		console.log(x);
 		callback(x);
 	});
 	
