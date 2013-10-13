@@ -2,7 +2,7 @@
 Change Log
 =============
 
-v1.0.0.1:
+v2013.731.433.2:
 ----------------
 1. Disabled Password Encryption
 2. Disabled Malware Detection
@@ -21,7 +21,7 @@ Expand Links Changes:
 3. Unblocking enqueue links in a custom URL class
 4. Unblocking AJAX request to longurl
 5. Changing URL with long URL and innerText with longurl title
-6. Expand popular short urls only
+
 
 TypoSquatting Changes:
 ----------------------
