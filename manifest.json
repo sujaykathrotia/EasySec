@@ -6,7 +6,7 @@
 		"48": "images/icon-48x48.png",
 		"19": "images/icon-19x19.png"
 	},
-	"version": "1.0.0.3",
+	"version": "1.0.0.4",
 	"manifest_version": 2,
 	"background": {
 		"scripts": [ "scripts/jquery-1.10.2.min.js", "scripts/lawnchair.js", "scripts/bg.js" ]

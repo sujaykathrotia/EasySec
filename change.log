@@ -2,7 +2,11 @@
 Change Log
 =============
 
-v2013.731.433.2:
+v1.0.0.4
+----------------
+1. Bug Fixed: Enforce HTTPS - Cannot enforce https more than once
+
+v1.0.0.3:
 ----------------
 1. Disabled Password Encryption
 2. Disabled Malware Detection

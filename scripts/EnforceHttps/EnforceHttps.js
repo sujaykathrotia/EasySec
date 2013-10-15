@@ -1,30 +1,24 @@
 var _EnHt = {};
 
-_EnHt.onLoad = function(){
+_EnHt.onLoad = function() {
 
 	//enforce if not https
 	if (window.location.protocol != "https:") {
-		var httpsURL = "https:" + window.location.href.substring(window.location.protocol.length);
-		
-		value = localStorage['httpsAttempts'];
-		//console.log(value);
-		if(value >= 1){
-			//do nohing
-			console.log('donothing');
-		}
-		else{
+		var url = window.location.href.substring(window.location.protocol.length),
+			httpsURL = "https:" + url,
+			refURL = document.referrer.substr(6),
+			httpsAttempts = (refURL === "" ? false : (url.indexOf(refURL) > -1));
+
+		if(httpsAttempts === true || window.self !== window.top) {
+			//console.log('donothing');
+		} else {
 			var me = this;
-			localStorage['httpsAttempts']=1;
 			/* Asking Background to check if site supports https*/
 			chrome.extension.sendRequest({
 				action: 'checkHTTPS',
 				link:  httpsURL
 			}, _EnHt.redirect);
 		}
-					
-	}
-	else{
-		localStorage['httpsAttempts']=0;
 	}
 };
 
