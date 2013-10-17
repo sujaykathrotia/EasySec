@@ -5,13 +5,16 @@ _es.modules = [];
 
 _es.modules.push({
 	title: "Enforce HTTPS",
-	id: "_EnHt"
+	id: "_EnHt",
+	run_at: "start"
 }, {
 	title: "Link Expansion",
-	id: "_LiEx"
+	id: "_LiEx",
+	run_at: "end"
 }, {
 	title: "Domain Verification",
-	id: "_TySq"
+	id: "_TySq",
+	run_at: "end"
 });
 
 /* Creating Domain Settings Object */

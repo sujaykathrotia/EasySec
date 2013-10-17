@@ -2,6 +2,14 @@
 Change Log
 =============
 
+v1.0.0.6
+----------------
+1. Performance Improvement for Enforce HTTPS Module
+   - Moved to run at document start
+   - If problem found, disabling enforcement on that domain
+2. TypoSquatting - Only checking for top level domain.
+   - For en.wikipedia.org we'll best match for wikipedia.org
+
 v1.0.0.4
 ----------------
 1. Bug Fixed: Enforce HTTPS - Cannot enforce https more than once

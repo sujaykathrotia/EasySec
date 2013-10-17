@@ -9,7 +9,8 @@ _TySq.onLoad = function(data) {
 };
 
 _TySq.getURLandCheck = function (urlsDictionary) {
-	var matchBest = _TySq.checkDistance(current_domain, urlsDictionary);
+	var domain = current_domain.split(".").splice(-2).join(".");
+	var matchBest = _TySq.checkDistance(domain, urlsDictionary);
 	if(matchBest !== "") {
 		var style = 'position: fixed; top: 0px; width: 100%;background: linear-gradient(to bottom, #D14836 0%,#CC0D00 100%);color: #fafafa;font-size: 13px;padding: 6px 15px;z-index: 99999;box-shadow: 0px 0px 15px #333;border-bottom: 2px solid #D60000;';
 		var a = $("<div style='" + style + "'>Are you sure you want to browse <b>" + current_domain + " </b> instead of <a target='_blank' style='color: #fafafa;' href='http://" + matchBest + "'><b>" + matchBest + "</b></a> ?</div>");

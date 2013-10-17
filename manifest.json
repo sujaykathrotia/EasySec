@@ -6,7 +6,7 @@
 		"48": "images/icon-48x48.png",
 		"19": "images/icon-19x19.png"
 	},
-	"version": "1.0.0.4",
+	"version": "1.0.0.6",
 	"manifest_version": 2,
 	"background": {
 		"scripts": [ "scripts/jquery-1.10.2.min.js", "scripts/lawnchair.js", "scripts/bg.js" ]
@@ -22,11 +22,16 @@
 	},
 	"content_scripts": [{
 		"all_frames": true,
-		"js": [ "scripts/jquery-1.10.2.min.js", "scripts/begin.js", "scripts/LinkExpansion/LinkExpansion.js", "scripts/TypoSquatting/levenshtein.js", "scripts/TypoSquatting/typosquatting.js", "scripts/EnforceHttps/EnforceHttps.js" ],
+		"js": [ "scripts/Begin/begin.js", "scripts/Begin/begin_start.js", "scripts/EnforceHttps/EnforceHttps.js" ],
+		"matches": [ "http://*/*", "https://*/*" ],
+		"run_at": "document_start"
+	}, {
+		"all_frames": true,
+		"js": [ "scripts/jquery-1.10.2.min.js", "scripts/LinkExpansion/LinkExpansion.js", "scripts/TypoSquatting/levenshtein.js", "scripts/TypoSquatting/typosquatting.js", "scripts/Begin/begin_end.js" ],
 		"matches": [ "http://*/*", "https://*/*" ],
 		"run_at": "document_end"
 	}],
 	"minimum_chrome_version": "26.0.0.0",
 	"permissions": [ "http://*/*", "https://*/*", "background", "cookies", "idle", "notifications", "tabs", "storage" ],
-	"web_accessible_resources": [ "*" ] 
+	"web_accessible_resources": [ "*" ]
 }
